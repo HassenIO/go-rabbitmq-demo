@@ -3,7 +3,6 @@ package main
 import (
 	"github.com/htaidirt/go-rabbitmq-blog/lib/broker"
 	"github.com/streadway/amqp"
-	"os"
 )
 
 func main() {
@@ -17,5 +16,5 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	consumer.Listen(os.Args[1:])
+	consumer.Listen()
 }

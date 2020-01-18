@@ -11,34 +11,6 @@ type Producer struct {
 	connection *amqp.Connection
 }
 
-func (p *Producer) init() error {
-	channel, err := p.connection.Channel()
-	logger.OnError(err, "Error setting up connection for channel")
-	defer channel.Close()
-
-	return useExchange(channel)
-}
-
-// Push the message in the exchange
-func (p *Producer) Push(message string, severity string) error {
-	channel, err := p.connection.Channel()
-	logger.OnError(err, "Error setting up connection for channel")
-	defer channel.Close()
-
-	err = channel.Publish(
-		exchangeName,
-		severity,
-		false,
-		false,
-		amqp.Publishing{
-			ContentType: "text/plain",
-			Body:        []byte(message),
-		},
-	)
-	log.Printf("Sending message: %s -> %s", message, exchangeName)
-	return nil
-}
-
 // NewProducer creates a new publisher and ensures the connection is established to our AMQP server
 func NewProducer(connection *amqp.Connection) (Producer, error) {
 	publisher := Producer{
@@ -51,4 +23,32 @@ func NewProducer(connection *amqp.Connection) (Producer, error) {
 	}
 
 	return publisher, nil
+}
+
+func (p *Producer) init() error {
+	ch, err := p.connection.Channel()
+	logger.OnError(err, "Error creating a connection of a channel for producer")
+	defer ch.Close()
+
+	return useExchange(ch)
+}
+
+// Push the message in the exchange
+func (p *Producer) Push(message string) error {
+	channel, err := p.connection.Channel()
+	logger.OnError(err, "Error setting up connection for channel")
+	defer channel.Close()
+
+	err = channel.Publish(
+		exchangeName, // The exchange name
+		"",           // Must specify a key
+		false,        // Not mandatory message
+		false,        // Not immediate
+		amqp.Publishing{ // Message to publish
+			ContentType: "text/plain",
+			Body:        []byte(message),
+		},
+	)
+	log.Printf("Sending message: %s -> %s", message, exchangeName)
+	return nil
 }

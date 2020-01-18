@@ -4,7 +4,7 @@ import (
 	"github.com/streadway/amqp"
 )
 
-var exchangeName = "greetings"
+var exchangeName = "GREETINGS"
 
 func useQueue(ch *amqp.Channel) (amqp.Queue, error) {
 	// QueueDeclare declares a queue to hold messages and deliver to consumers.

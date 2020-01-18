@@ -20,5 +20,6 @@ func main() {
 		panic(err)
 	}
 
-	producer.Push(fmt.Sprintf("Pushing to broker with name=%s", os.Args[1]), os.Args[1])
+	name := os.Args[1]
+	producer.Push(fmt.Sprintf("Hello %s!", name))
 }
