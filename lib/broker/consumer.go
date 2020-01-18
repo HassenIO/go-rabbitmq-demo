@@ -3,7 +3,7 @@ package broker
 import (
 	"log"
 
-	"github.com/htaidirt/go-rabbitmq-blog/lib/logger"
+	"github.com/htaidirt/go-rabbitmq-demo/lib/logger"
 	"github.com/streadway/amqp"
 )
 

@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/htaidirt/go-rabbitmq-blog/lib/broker"
+	"github.com/htaidirt/go-rabbitmq-demo/lib/broker"
 	"github.com/streadway/amqp"
 )
 

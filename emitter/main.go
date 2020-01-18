@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/htaidirt/go-rabbitmq-blog/lib/broker"
+	"github.com/htaidirt/go-rabbitmq-demo/lib/broker"
 	"github.com/streadway/amqp"
 )
 

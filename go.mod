@@ -1,4 +1,4 @@
-module github.com/htaidirt/go-rabbitmq-blog
+module github.com/htaidirt/go-rabbitmq-demo
 
 go 1.13
 
