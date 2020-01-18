@@ -18,6 +18,8 @@ This is intended to be an easy demo. You can change the emitter to receive a nam
 - **Listen to messages to show** by running `make listen` in your terminal. This will run the Go receiver microservice that listen to greeting messages from RabbitMQ.
 - **Send a name to greet** by running `make greet name=xxx` in your terminal. This will run the Go emitter microservice that sends to greeting message with the name (xxx) to RabbitMQ.
 
+![Executing the miscroservices](./assets/exec.png)
+
 # License
 
 MIT of course.
